@@ -1,13 +1,11 @@
+package com.bierbrauer.zebulon.car;
 
-package com.bierbrauer.zebulon.notes;
-
-
-public class Note {
+public class Car {
 
     private final long id;
     private final String content;
 
-    public Note(long id, String content) {
+    public Car(long id, String content) {
         this.id = id;
         this.content = content;
     }
@@ -19,5 +17,4 @@ public class Note {
     public String getContent() {
         return content;
     }
-
 }
