@@ -13,9 +13,9 @@ public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    private long projectId;
+    private Long projectId;
 
     private String content;
 
@@ -24,11 +24,11 @@ public class Note {
         this.content = content;
     }
 
-    public long getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(long projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
 
@@ -45,8 +45,8 @@ public class Note {
         if (this == o) return true;
         if (!(o instanceof Note)) return false;
         Note note = (Note) o;
-        return id == note.id &&
-                getProjectId() == note.getProjectId() &&
+        return id.equals(note.id) &&
+                getProjectId().equals(note.getProjectId()) &&
                 Objects.equals(getContent(), note.getContent());
     }
 

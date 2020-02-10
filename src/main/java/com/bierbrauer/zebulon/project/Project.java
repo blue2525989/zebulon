@@ -2,7 +2,6 @@ package com.bierbrauer.zebulon.project;
 
 import com.bierbrauer.zebulon.car.Car;
 import com.bierbrauer.zebulon.notes.Note;
-import com.bierbrauer.zebulon.parts.Part;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,17 +16,13 @@ public class Project {
 
     private String projectName;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany
     @JoinColumn(name = "projectId")
     private List<Note> notes;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany
     @JoinColumn(name = "projectId")
     private List<Car> cars;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "projectId")
-    private List<Part> parts;
 
     public Long getId() {
         return id;
@@ -57,14 +52,6 @@ public class Project {
         this.cars = cars;
     }
 
-    public List<Part> getParts() {
-        return parts;
-    }
-
-    public void setParts(List<Part> parts) {
-        this.parts = parts;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,13 +60,12 @@ public class Project {
         return getId().equals(project.getId()) &&
                 Objects.equals(getProjectName(), project.getProjectName()) &&
                 Objects.equals(getNotes(), project.getNotes()) &&
-                Objects.equals(getCars(), project.getCars()) &&
-                Objects.equals(getParts(), project.getParts());
+                Objects.equals(getCars(), project.getCars());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getProjectName(), getNotes(), getCars(), getParts());
+        return Objects.hash(getId(), getProjectName(), getNotes(), getCars());
     }
 
     @Override
@@ -89,7 +75,6 @@ public class Project {
                 ", projectName='" + projectName + '\'' +
                 ", notes=" + notes +
                 ", cars=" + cars +
-                ", parts=" + parts +
                 '}';
     }
 }
